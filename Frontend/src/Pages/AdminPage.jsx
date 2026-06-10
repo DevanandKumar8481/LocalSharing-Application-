@@ -87,22 +87,6 @@ export default function AdminPage() {
         }
       `}</style>
 
-      {/* NAV */}
-      <nav style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 100, padding: "0 24px", height: 60, display: "flex", alignItems: "center", justifyContent: "space-between", background: "rgba(10,10,15,0.92)", borderBottom: "1px solid rgba(255,255,255,0.08)", backdropFilter: "blur(20px)" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-          <a href="/" style={{ display: "flex", alignItems: "center", gap: 4 }}>
-            <span style={{ fontSize: 20, fontWeight: 800, color: "#f56565" }}>ResQ</span>
-            <span style={{ fontSize: 20, fontWeight: 300 }}>Link</span>
-          </a>
-          <span style={{ color: "rgba(255,255,255,0.2)", margin: "0 6px" }}>/</span>
-          <span style={{ fontSize: 13, color: "rgba(232,232,240,0.5)" }}>Admin</span>
-        </div>
-        <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-          <span style={{ fontSize: 11, padding: "3px 10px", borderRadius: 999, background: "rgba(245,101,101,0.15)", color: "#f56565", fontWeight: 700, border: "1px solid rgba(245,101,101,0.3)" }}>SUPER ADMIN</span>
-          <a href="/" style={{ fontSize: 13, color: "rgba(232,232,240,0.45)" }}>← Back</a>
-        </div>
-      </nav>
-
       <main style={{ maxWidth: 1100, margin: "0 auto", padding: "84px 24px 60px" }}>
 
         {/* Page title */}

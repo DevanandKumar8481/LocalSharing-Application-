@@ -4,7 +4,7 @@ const links = [
   { to: "/", label: "Home" },
   { to: "/dashboard", label: "Dashboard" },
   { to: "/map", label: "Live Map" },
-  { to: "donate", label: "Donor" },
+  { to: "/donate", label: "Donor" },
   { to: "/request", label: "Request Help" },
   { to: "/alerts", label: "Alerts" },
   { to: "/analytics", label: "Analytics" },

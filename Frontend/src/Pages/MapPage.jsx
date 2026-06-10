@@ -4,7 +4,7 @@ import {
   Search, Layers, Navigation, Crosshair, Filter
 } from "lucide-react";
 
-// ─── Tokens ───────────────────────────────────────────────────────────────────
+// Tokens 
 const C = {
   primary:   "#E5383B",
   secondary: "#6C63FF",
@@ -42,7 +42,7 @@ if (typeof document !== "undefined" && !document.getElementById("map-styles")) {
   document.head.appendChild(s);
 }
 
-// ─── Data ─────────────────────────────────────────────────────────────────────
+//  Data
 const FILTERS = [
   { id: "all",       label: "All",       icon: Layers,    color: C.text      },
   { id: "blood",     label: "Blood",     icon: Droplet,   color: C.primary   },
@@ -64,7 +64,7 @@ const PINS = [
   { x: 88, y: 40, type: "shelter",   urg: false, label: "Community hall",    dist: 4.2 },
 ];
 
-// ─── Component ────────────────────────────────────────────────────────────────
+// Component 
 export default function MapPage() {
   const [active, setActive] = useState("all");
   const isMobile = typeof window !== "undefined" && window.innerWidth < 900;

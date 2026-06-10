@@ -75,20 +75,7 @@ export default function RequestPage() {
           .form-card { padding: 20px !important; }
         }
       `}</style>
-
-      {/* NAV */}
-      <nav style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 100, padding: "0 24px", height: 60, display: "flex", alignItems: "center", justifyContent: "space-between", background: "rgba(10,10,15,0.9)", borderBottom: "1px solid rgba(255,255,255,0.08)", backdropFilter: "blur(20px)" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-          <Link to="/" style={{ display: "flex", alignItems: "center", gap: 4 }}>
-            <span style={{ fontSize: 20, fontWeight: 800, color: "#f56565" }}>ResQ</span>
-            <span style={{ fontSize: 20, fontWeight: 300, color: "#e8e8f0" }}>Link</span>
-          </Link>
-          <span style={{ color: "rgba(255,255,255,0.2)", margin: "0 6px" }}>/</span>
-          <span style={{ fontSize: 13, color: "rgba(232,232,240,0.5)" }}>Request Help</span>
-        </div>
-        <Link to="/" style={{ fontSize: 13, color: "rgba(232,232,240,0.5)", display: "flex", alignItems: "center", gap: 4, transition: "color 0.2s" }}>← Back</Link>
-      </nav>
-
+      
       {/* PAGE HEADER */}
       <div className="hero-section" style={{ paddingTop: 88, paddingBottom: 0, maxWidth: 1100, margin: "0 auto", padding: "88px 24px 0" }}>
         <h1 style={{ fontSize: 32, fontWeight: 800, letterSpacing: -0.5, marginBottom: 6 }}>Request emergency help</h1>

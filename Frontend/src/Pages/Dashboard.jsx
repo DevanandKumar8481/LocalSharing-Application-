@@ -4,8 +4,9 @@ import {
   AlertTriangle, CheckCircle2, ArrowUpRight, HeartPulse,
   Activity, Award, Zap
 } from "lucide-react";
+import { Link } from "react-router-dom";
 
-// ─── Design tokens ────────────────────────────────────────────────────────────
+//  Design tokens 
 const COLOR = {
   primary:      "#E5383B",
   primaryLight: "#fde8e8",
@@ -64,6 +65,7 @@ const S = {
     boxShadow: "0 2px 12px rgba(0,0,0,.05)",
     ...extra,
   }),
+
   // Buttons
   btnPrimary: {
     display: "inline-flex", alignItems: "center", gap: 6,
@@ -91,7 +93,7 @@ const S = {
   }),
 };
 
-// ─── Helpers ──────────────────────────────────────────────────────────────────
+// Helpers 
 function useWindowWidth() {
   const [w, setW] = useState(typeof window !== "undefined" ? window.innerWidth : 1200);
   return w;
@@ -121,7 +123,7 @@ function Badge({ color, label }) {
   return <span style={S.tag(c.bg, c.fg)}>{label}</span>;
 }
 
-// ─── SOS pulse animation (keyframes injected once) ────────────────────────────
+// SOS pulse animation (keyframes injected once)
 const CSS = `
 @keyframes pulse-ring {
   0%   { transform: scale(1);   opacity: .6; }
@@ -136,7 +138,7 @@ if (typeof document !== "undefined" && !document.getElementById("resq-styles")) 
   document.head.appendChild(el);
 }
 
-// ─── Sub-components ───────────────────────────────────────────────────────────
+// Sub-components 
 function AlertRow({ color, title, sub }) {
   const accent = { primary: COLOR.primary, warning: COLOR.warning, success: COLOR.success }[color];
   return (
@@ -150,7 +152,7 @@ function AlertRow({ color, title, sub }) {
   );
 }
 
-// ─── Main Dashboard ───────────────────────────────────────────────────────────
+// Main Dashboard
 export default function Dashboard() {
   const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
 
@@ -180,10 +182,10 @@ export default function Dashboard() {
   ];
 
   const quickActions = [
-    { icon: Droplet,       label: "Donate blood" },
-    { icon: Plus,          label: "Request help" },
-    { icon: MapPin,        label: "Live map" },
-    { icon: CheckCircle2,  label: "My impact" },
+    { icon: Droplet,       label: "Donate blood", to: "/donate" },
+    { icon: Plus,          label: "Request help", to: "/request" },
+    { icon: MapPin,        label: "Live map" , to: "/map"},
+    { icon: CheckCircle2,  label: "My impact", to: "/impact"},
   ];
 
   return (
@@ -202,7 +204,7 @@ export default function Dashboard() {
         <div style={S.pageTitle}>Good evening, Aarav</div>
         <div style={S.pageSub}>3 active requests near you · 12 verified responders online</div>
 
-        {/* ── Hero row ── */}
+        {/* Hero row  */}
         <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "2fr 1fr", gap: 16, marginBottom: 20 }}>
           {/* Community status */}
           <div style={{
@@ -288,7 +290,7 @@ export default function Dashboard() {
           ))}
         </div>
 
-        {/* ── Bottom grid ── */}
+        {/* Bottom grid  */}
         <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "2fr 1fr", gap: 16 }}>
           {/* Active requests */}
           <div style={S.card()}>
@@ -361,7 +363,7 @@ export default function Dashboard() {
         {/* ── Quick actions ── */}
         <div style={{ display: "grid", gridTemplateColumns: isMobile ? "repeat(2,1fr)" : "repeat(4,1fr)", gap: 12, marginTop: 20 }}>
           {quickActions.map(q => (
-            <a key={q.label} href="#" style={{
+            <Link key={q.label} to={q.to} style={{
               ...S.card({ padding: 16 }),
               display: "flex", alignItems: "center", gap: 12,
               textDecoration: "none", color: COLOR.text,
@@ -374,7 +376,7 @@ export default function Dashboard() {
                 <q.icon size={18} color="#fff" />
               </span>
               <span style={{ fontWeight: 600, fontSize: 14 }}>{q.label}</span>
-            </a>
+            </Link>
           ))}
         </div>
       </main>

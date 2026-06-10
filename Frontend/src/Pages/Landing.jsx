@@ -1,6 +1,7 @@
-
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+
+
 
 
 const resources = [
@@ -39,7 +40,7 @@ const liveStats = [
 
 const Landing = () => {
   const [navOpen, setNavOpen] = useState(false);
-
+  const navigate = useNavigate();
   return (
     <div style={{ fontFamily: "system-ui, -apple-system, sans-serif", background: "#0a0a0f", color: "#e8e8f0", minHeight: "100vh", overflowX: "hidden" }}>
       <style>{`
@@ -116,24 +117,6 @@ const Landing = () => {
         }
       `}</style>
 
-      {/* NAV */}
-
-      {/* <nav style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 100, padding: "0 24px", height: 64, display: "flex", alignItems: "center", justifyContent: "space-between", background: "rgba(10,10,15,0.85)", borderBottom: "1px solid rgba(255,255,255,0.08)", backdropFilter: "blur(20px)" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-          <span style={{ fontSize: 22, fontWeight: 800, color: "#f56565" }}>ResQ</span>
-          <span style={{ fontSize: 22, fontWeight: 300, color: "#e8e8f0" }}>Link</span>
-        </div>
-        <div style={{ display: "flex", gap: 24, fontSize: 14, color: "rgba(232,232,240,0.7)" }}>
-          {["Map", "Donate", "Request Help", "Volunteer"].map(item => (
-            <a key={item} href="#" style={{ transition: "color 0.2s" }} onMouseEnter={e => e.target.style.color = "#e8e8f0"} onMouseLeave={e => e.target.style.color = "rgba(232,232,240,0.7)"}>{item}</a>
-          ))}
-        </div>
-        <div style={{ display: "flex", gap: 8 }}>
-          <button className="btn-outline" style={{ padding: "8px 16px", fontSize: 13 }} >Log in</button>
-          <button className="btn-primary" style={{ padding: "8px 16px", fontSize: 13 }} >Sign up free</button>
-        </div>
-      </nav> */}
-
       {/* HERO */}
       <section style={{ paddingTop: 120, paddingBottom: 80, position: "relative", overflow: "hidden" }}>
         <div style={{ position: "absolute", top: 80, right: "5%", width: 500, height: 500, borderRadius: "50%", background: "rgba(229,62,62,0.08)", filter: "blur(60px)", pointerEvents: "none" }} />
@@ -165,8 +148,8 @@ const Landing = () => {
             </p>
 
             <div style={{ display: "flex", flexWrap: "wrap", gap: 12, marginBottom: 32 }}>
-              <button className="btn-primary" style={{ fontSize: 15 }}>❤️ Request Help</button>
-              <button className="btn-outline" style={{ fontSize: 15 }}>Become a Donor</button>
+              <button className="btn-primary" style={{ fontSize: 15 }} onClick={() => navigate("/request")}>❤️ Request Help</button>
+              <button className="btn-outline" style={{ fontSize: 15 }} onClick={() => navigate("/donate")} >Become a Donor</button>
               <button className="btn-outline" style={{ fontSize: 15, borderColor: "transparent" }}>Explore Resources →</button>
             </div>
 
@@ -315,7 +298,7 @@ const Landing = () => {
                   </div>
                 ))}
               </div>
-              <button className="btn-primary" style={{ width: "100%", justifyContent: "center", background: "linear-gradient(135deg, #6366f1, #9f7aea)" }}>Open Live Map</button>
+              <button className="btn-primary" style={{ width: "100%", justifyContent: "center", background: "linear-gradient(135deg, #6366f1, #9f7aea)" }} onClick={() => navigate("/map")}>Open Live Map</button>
             </div>
           </div>
         </div>
@@ -330,7 +313,7 @@ const Landing = () => {
             <h2 style={{ fontSize: 42, fontWeight: 800, color: "#fff", marginBottom: 12, letterSpacing: -1 }}>Join 12,000+ volunteers saving lives.</h2>
             <p style={{ fontSize: 16, color: "rgba(255,255,255,0.8)", maxWidth: 480, margin: "0 auto 32px", lineHeight: 1.6 }}>Become a verified responder, list a resource, or simply share the app — every action matters.</p>
             <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: 12 }}>
-              <button style={{ background: "#fff", color: "#c53030", border: "none", padding: "12px 28px", borderRadius: 10, fontSize: 15, fontWeight: 700, cursor: "pointer", transition: "opacity 0.2s" }}>
+              <button style={{ background: "#fff", color: "#c53030", border: "none", padding: "12px 28px", borderRadius: 10, fontSize: 15, fontWeight: 700, cursor: "pointer", transition: "opacity 0.2s" }} onClick={() => navigate("/signup")} >
                 Create free account
               </button>
               <button style={{ background: "transparent", color: "#fff", border: "1.5px solid rgba(255,255,255,0.5)", padding: "12px 28px", borderRadius: 10, fontSize: 15, fontWeight: 600, cursor: "pointer", transition: "background 0.2s" }}>
