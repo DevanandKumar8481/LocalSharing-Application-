@@ -121,9 +121,9 @@ export default function AlertsPage() {
       <main style={{ maxWidth: 900, margin: "0 auto", padding: "84px 24px 60px" }}>
 
         {/* Page title */}
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 24, flexWrap: "wrap", gap: 8 }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 24, flexWrap: "wrap", gap: 7, }}>
           <div>
-            <h1 style={{ fontSize: 30, fontWeight: 800, letterSpacing: -0.5, marginBottom: 4 }}>Emergency Alert Center</h1>
+            <h1 style={{ fontSize: 30, fontWeight: 800, letterSpacing: -0.5, marginBottom: 6 }}>Emergency Alert Center</h1>
             <p style={{ fontSize: 13, color: "rgba(232,232,240,0.45)", display: "flex", alignItems: "center", gap: 6 }}>
               <span className="pulse-dot" style={{ width: 7, height: 7, borderRadius: "50%", background: "#f56565", display: "inline-block" }} />
               5 active alerts in your region · last sync 12 seconds ago

@@ -127,11 +127,7 @@ export default function DonatePage() {
 
   return (
     <div style={S.shell}>
-      {/* Header */}
-      <header style={S.header}>
-        <div style={S.logo}>ResQ Link</div>
-      </header>
-
+      
       <main style={S.main}>
         <h1 style={S.title}>Blood Donation</h1>
         <p style={S.sub}>Find verified donors, blood banks and live requests.</p>

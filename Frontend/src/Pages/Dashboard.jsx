@@ -190,9 +190,9 @@ export default function Dashboard() {
 
   return (
     <div style={S.shell}>
+      <br></br><br></br>
       {/* Header */}
       <header style={S.header}>
-        <div style={S.logo}>ResQ Link</div>
         <div style={{ display: "flex", gap: 8 }}>
           <button style={S.btnOutline}><MapPin size={14} /> Update location</button>
           <button style={S.btnPrimary}><Plus size={14} /> New Request</button>

@@ -73,20 +73,6 @@ export default function MapPage() {
 
   return (
     <div style={{ minHeight: "100vh", background: C.bg, fontFamily: "'Inter','Segoe UI',sans-serif", color: C.text }}>
-      {/* Header */}
-      <header style={{
-        background: C.card, borderBottom: `1px solid ${C.border}`,
-        padding: "0 24px", height: 68,
-        display: "flex", alignItems: "center",
-        position: "sticky", top: 0, zIndex: 20,
-      }}>
-        <div style={{
-          fontWeight: 800, fontSize: 20,
-          background: C.gradHero,
-          WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
-          backgroundClip: "text", letterSpacing: "-0.5px",
-        }}>ResQ Link</div>
-      </header>
 
       <main style={{ maxWidth: 1200, margin: "0 auto", padding: "28px 20px 48px" }}>
         <h1 style={{ fontSize: 26, fontWeight: 800, letterSpacing: "-0.5px", margin: 0 }}>Live Resource Map</h1>
@@ -294,7 +280,7 @@ export default function MapPage() {
             </div>
           </div>
 
-          {/* ── Side list ── */}
+          {/* Side list */}
           <aside>
             <div style={{
               background: C.card, border: `1px solid ${C.border}`,

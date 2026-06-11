@@ -12,6 +12,11 @@ import RequestPage from "./Pages/RequestPage";
 import AlertsPage from "./Pages/AlertsPage";
 import AnalyticsPage from "./Pages/AnalyticsPage";
 import Navbar from "./Components/Navbar"
+import Food from "./Pages/Food";
+import Blood from "./Pages/Blood";
+import Medicine from "./Pages/Medicine";
+import Shelter from "./Pages/Shelter";
+import Transport from "./Pages/Transport";
 
 
 function App() {
@@ -22,7 +27,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Landing />} />
 
-        <Route path="/loginpage" element={<LoginPage />} />
+        <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<Signup />} />
 
         <Route path="/donate" element={<Donate />} />
@@ -35,6 +40,12 @@ function App() {
 
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/adminpage" element={<AdminPage />} />
+        <Route path="/volunteer" element={<Volunteers />} />
+        <Route path="/blood" element={<Blood/>} />
+        <Route path="/medicine" element={<Medicine/>} />
+        <Route path="/food" element={<Food/>} /> 
+        <Route path="/shelter" element={<Shelter/>} />
+        <Route path="/transport" element={<Transport/>}/>
       </Routes>
     </>
   );

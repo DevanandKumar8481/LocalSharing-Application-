@@ -37,6 +37,7 @@ const liveStats = [
   { v: "42", l: "Shelters" },
   { v: "117", l: "Vehicles" },
 ];
+//#0a0a0f
 
 const Landing = () => {
   const [navOpen, setNavOpen] = useState(false);
@@ -150,11 +151,11 @@ const Landing = () => {
             <div style={{ display: "flex", flexWrap: "wrap", gap: 12, marginBottom: 32 }}>
               <button className="btn-primary" style={{ fontSize: 15 }} onClick={() => navigate("/request")}>❤️ Request Help</button>
               <button className="btn-outline" style={{ fontSize: 15 }} onClick={() => navigate("/donate")} >Become a Donor</button>
-              <button className="btn-outline" style={{ fontSize: 15, borderColor: "transparent" }}>Explore Resources →</button>
+              <button className="btn-outline" style={{ fontSize: 15, borderColor: "transparent" }} onClick={() => navigate("/map")} >Explore Resources →</button>
             </div>
 
             <div style={{ display: "flex", gap: 24, fontSize: 12, color: "rgba(232,232,240,0.5)" }}>
-              <span>✅ Aadhaar verified</span>
+              <span>🪪 Aadhaar verified</span>
               <span>📍 Real-time GPS</span>
               <span>✨ AI prioritized</span>
             </div>
@@ -163,18 +164,17 @@ const Landing = () => {
           <div className="float-slow" style={{ position: "relative" }}>
             <div style={{ position: "absolute", inset: -16, background: "linear-gradient(135deg, rgba(229,62,62,0.15), rgba(99,102,241,0.15))", borderRadius: 32, filter: "blur(20px)" }} />
             <div className="glass-strong" style={{ position: "relative", borderRadius: 28, padding: 12 }}>
-              <div style={{ borderRadius: 20, overflow: "hidden", background: "linear-gradient(135deg, #1a1a2e, #16213e, #0f3460)", minHeight: 320, display: "flex", alignItems: "center", justifyContent: "center" }}>
-                <div style={{ textAlign: "center", padding: 40 }}>
-                  <div style={{ fontSize: 64, marginBottom: 16 }}>🗺️</div>
-                  <div style={{ fontSize: 18, fontWeight: 600, color: "#e8e8f0", marginBottom: 8 }}>Live Emergency Network</div>
-                  <div style={{ fontSize: 13, color: "rgba(232,232,240,0.5)" }}>Real-time resource coordination across India</div>
-                  <div style={{ marginTop: 24, display: "flex", gap: 12, justifyContent: "center" }}>
-                    {["🔴 248 Donors", "🔵 42 Shelters", "🟢 117 Vehicles"].map(t => (
-                      <span key={t} className="glass" style={{ padding: "4px 12px", borderRadius: 8, fontSize: 12 }}>{t}</span>
-                    ))}
-                  </div>
-                </div>
-              </div>
+              <img
+                src="/photo.jpg"
+                alt="Live Emergency Network"
+                style={{
+                  borderRadius: 20,
+                  width: "100%",
+                  display: "block",
+                  objectFit: "cover",
+                  height: 320,
+                }}
+              />
 
               <div className="floating-card glass-strong" style={{ position: "absolute", left: -20, top: 30, borderRadius: 16, padding: 12, display: "flex", alignItems: "center", gap: 10 }}>
                 <div style={{ width: 40, height: 40, borderRadius: 12, background: "rgba(229,62,62,0.15)", display: "grid", placeItems: "center", fontSize: 18 }}>🩸</div>
@@ -213,15 +213,15 @@ const Landing = () => {
       </section >
 
       {/* RESOURCES */}
-      < section style={{ maxWidth: 1200, margin: "0 auto", padding: "0 24px 80px" }}>
+      <section style={{ maxWidth: 1200, margin: "0 auto", padding: "0 24px 80px" }}>
         <div style={{ textAlign: "center", maxWidth: 520, margin: "0 auto 48px" }}>
           <div style={{ fontSize: 11, fontWeight: 700, color: "#f56565", textTransform: "uppercase", letterSpacing: 3, marginBottom: 8 }}>Resources</div>
           <h2 style={{ fontSize: 42, fontWeight: 800, letterSpacing: -1, marginBottom: 12 }}>Five lifelines. One network.</h2>
           <p style={{ fontSize: 15, color: "rgba(232,232,240,0.55)", lineHeight: 1.6 }}>Every category is verified, geo-tagged and routed by AI to the right person at the right time.</p>
         </div>
-        <div className="resources-grid" style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: 16 }}>
+        <div className="resources-grid" style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: 16 }} >
           {resources.map(r => (
-            <div key={r.label} className="resource-card glass" style={{ borderRadius: 20, padding: 24, cursor: "pointer" }}>
+            <div key={r.label} className="resource-card glass" style={{ borderRadius: 20, padding: 24, cursor: "pointer" }} onClick={() => navigate(r.path)} >
               <div style={{ width: 48, height: 48, borderRadius: 14, background: r.bg, display: "grid", placeItems: "center", fontSize: 22, marginBottom: 16 }}>{r.emoji}</div>
               <div style={{ fontSize: 14, fontWeight: 600 }}>{r.label}</div>
               <div style={{ fontSize: 12, color: "rgba(232,232,240,0.4)", marginTop: 4 }}>View live availability →</div>
@@ -316,7 +316,8 @@ const Landing = () => {
               <button style={{ background: "#fff", color: "#c53030", border: "none", padding: "12px 28px", borderRadius: 10, fontSize: 15, fontWeight: 700, cursor: "pointer", transition: "opacity 0.2s" }} onClick={() => navigate("/signup")} >
                 Create free account
               </button>
-              <button style={{ background: "transparent", color: "#fff", border: "1.5px solid rgba(255,255,255,0.5)", padding: "12px 28px", borderRadius: 10, fontSize: 15, fontWeight: 600, cursor: "pointer", transition: "background 0.2s" }}>
+              <button style={{ background: "transparent", color: "#fff", border: "1.5px solid rgba(255,255,255,0.5)", padding: "12px 28px", borderRadius: 10, fontSize: 15, fontWeight: 600, cursor: "pointer", transition: "background 0.2s" }}
+                onClick={() => navigate("/volunteer")}>
                 Become a Volunteer
               </button>
             </div>
