@@ -8,21 +8,21 @@ import { Link } from "react-router-dom";
 
 //  Design tokens 
 const COLOR = {
-  primary:      "#E5383B",
+  primary: "#E5383B",
   primaryLight: "#fde8e8",
-  secondary:    "#6C63FF",
-  secondaryLight:"#eeecff",
-  success:      "#22c55e",
+  secondary: "#6C63FF",
+  secondaryLight: "#eeecff",
+  success: "#22c55e",
   successLight: "#dcfce7",
-  warning:      "#f59e0b",
+  warning: "#f59e0b",
   warningLight: "#fef3c7",
-  bg:           "#f8f9fc",
-  card:         "#ffffff",
-  border:       "#e8eaed",
-  text:         "#111827",
-  muted:        "#6b7280",
-  gradHero:     "linear-gradient(135deg, #E5383B 0%, #a21caf 100%)",
-  gradCard:     "linear-gradient(135deg, #6C63FF 0%, #E5383B 100%)",
+  bg: "#0a0a0f",
+  card: "rgba(255,255,255,.05)",
+  border: "rgba(255,255,255,.18)",
+  text: "#e8e8f0", 
+  muted: "#6b7280",
+  gradHero: "linear-gradient(135deg, #E5383B 0%, #a21caf 100%)",
+  gradCard: "linear-gradient(135deg, #6C63FF 0%, #E5383B 100%)",
 };
 
 const S = {
@@ -55,8 +55,8 @@ const S = {
   },
   main: { maxWidth: 1200, margin: "0 auto", padding: "28px 20px 48px" },
   pageTitle: { fontSize: 26, fontWeight: 800, letterSpacing: "-0.5px", marginBottom: 2 },
-  pageSub:   { fontSize: 13, color: COLOR.muted, marginBottom: 28 },
-  row:  (gap = 16) => ({ display: "flex", gap, flexWrap: "wrap" }),
+  pageSub: { fontSize: 13, color: COLOR.muted, marginBottom: 28 },
+  row: (gap = 16) => ({ display: "flex", gap, flexWrap: "wrap" }),
   card: (extra = {}) => ({
     background: COLOR.card,
     border: `1px solid ${COLOR.border}`,
@@ -82,6 +82,7 @@ const S = {
   btnSm: {
     padding: "6px 14px", borderRadius: 8, border: `1.5px solid ${COLOR.border}`,
     background: "transparent", fontWeight: 500, fontSize: 12, cursor: "pointer",
+    color: COLOR.text,
   },
   tag: (bg, color) => ({
     fontSize: 10, fontWeight: 700, padding: "3px 8px",
@@ -114,10 +115,10 @@ function Grid({ cols = 1, gap = 16, children, style = {} }) {
 
 function Badge({ color, label }) {
   const map = {
-    primary: { bg: COLOR.primary,     fg: "#fff" },
-    warning: { bg: COLOR.warning,     fg: "#fff" },
-    success: { bg: COLOR.success,     fg: "#fff" },
-    secondary:{ bg: COLOR.secondary,  fg: "#fff" },
+    primary: { bg: COLOR.primary, fg: "#fff" },
+    warning: { bg: COLOR.warning, fg: "#fff" },
+    success: { bg: COLOR.success, fg: "#fff" },
+    secondary: { bg: COLOR.secondary, fg: "#fff" },
   };
   const c = map[color] || map.primary;
   return <span style={S.tag(c.bg, c.fg)}>{label}</span>;
@@ -157,10 +158,10 @@ export default function Dashboard() {
   const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
 
   const stats = [
-    { icon: Activity, label: "Lives assisted", value: "27",      delta: "+3 this week",    color: COLOR.primary,    bg: COLOR.primaryLight },
-    { icon: Clock,    label: "Avg response",   value: "2m 41s",  delta: "−18s vs last",    color: COLOR.secondary,  bg: COLOR.secondaryLight },
-    { icon: Award,    label: "Trust score",    value: "4.92",    delta: "Top 5% in city",  color: COLOR.success,    bg: COLOR.successLight },
-    { icon: Zap,      label: "Streak",         value: "12 days", delta: "Keep it up!",     color: COLOR.warning,    bg: COLOR.warningLight },
+    { icon: Activity, label: "Lives assisted", value: "27", delta: "+3 this week", color: COLOR.primary, bg: COLOR.primaryLight },
+    { icon: Clock, label: "Avg response", value: "2m 41s", delta: "−18s vs last", color: COLOR.secondary, bg: COLOR.secondaryLight },
+    { icon: Award, label: "Trust score", value: "4.92", delta: "Top 5% in city", color: COLOR.success, bg: COLOR.successLight },
+    { icon: Zap, label: "Streak", value: "12 days", delta: "Keep it up!", color: COLOR.warning, bg: COLOR.warningLight },
   ];
 
   const requests = [
@@ -182,22 +183,14 @@ export default function Dashboard() {
   ];
 
   const quickActions = [
-    { icon: Droplet,       label: "Donate blood", to: "/donate" },
-    { icon: Plus,          label: "Request help", to: "/request" },
-    { icon: MapPin,        label: "Live map" , to: "/map"},
-    { icon: CheckCircle2,  label: "My impact", to: "/impact"},
+    { icon: Droplet, label: "Donate blood", to: "/donate" },
+    { icon: Plus, label: "Request help", to: "/request" },
+    { icon: MapPin, label: "Live map", to: "/map" },
+    { icon: CheckCircle2, label: "My impact", to: "/analytics" },
   ];
 
   return (
     <div style={S.shell}>
-      <br></br><br></br>
-      {/* Header */}
-      <header style={S.header}>
-        <div style={{ display: "flex", gap: 8 }}>
-          <button style={S.btnOutline}><MapPin size={14} /> Update location</button>
-          <button style={S.btnPrimary}><Plus size={14} /> New Request</button>
-        </div>
-      </header>
 
       {/* Main */}
       <main style={S.main}>
@@ -352,9 +345,9 @@ export default function Dashboard() {
                 <h3 style={{ fontSize: 16, fontWeight: 800, margin: 0 }}>Emergency alerts</h3>
               </div>
               <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-                <AlertRow color="warning" title="Heavy rainfall warning"     sub="Sector 22 · Next 6 hours" />
+                <AlertRow color="warning" title="Heavy rainfall warning" sub="Sector 22 · Next 6 hours" />
                 <AlertRow color="primary" title="Blood drive at Civil Hospital" sub="Tomorrow 9 AM – 4 PM" />
-                <AlertRow color="success" title="Shelter capacity restored"  sub="Community Hall, Sec 14" />
+                <AlertRow color="success" title="Shelter capacity restored" sub="Community Hall, Sec 14" />
               </div>
             </div>
           </div>

@@ -17,6 +17,8 @@ import Blood from "./Pages/Blood";
 import Medicine from "./Pages/Medicine";
 import Shelter from "./Pages/Shelter";
 import Transport from "./Pages/Transport";
+import TrackPage from "./Pages/TrackPage";
+import ProfilePage from "./Pages/ProfilePage";
 
 
 function App() {
@@ -46,6 +48,8 @@ function App() {
         <Route path="/food" element={<Food/>} /> 
         <Route path="/shelter" element={<Shelter/>} />
         <Route path="/transport" element={<Transport/>}/>
+        <Route path="/trackpage" element={<TrackPage/>} />
+        <Route path="/profile" element={<ProfilePage />} />
       </Routes>
     </>
   );

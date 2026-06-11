@@ -95,7 +95,7 @@ export default function AdminPage() {
           <p style={{ fontSize: 13, color: "rgba(232,232,240,0.45)" }}>Verifications, moderation, analytics and disaster reports.</p>
         </div>
 
-        {/* KPIs */}
+        {/* KPIs -Key Performance Indicators*/}
         <div className="grid-4" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 14, marginBottom: 20 }}>
           {kpis.map(k => (
             <div key={k.l} className="glass-strong" style={{ borderRadius: 18, padding: "18px 20px" }}>
