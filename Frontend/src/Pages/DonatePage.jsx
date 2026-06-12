@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Droplet, Search, MapPin, Phone, Clock,
   AlertTriangle, Heart, Calendar
@@ -13,11 +14,11 @@ const C = {
   success:       "#22c55e",
   successLight:  "#dcfce7",
   warning:       "#f59e0b",
-  bg:            "#f8f9fc",
-  card:          "#ffffff",
-  border:        "#e8eaed",
-  text:          "#111827",
-  muted:         "#6b7280",
+  bg:            "#0a0a0f",
+  card:          "rgba(255,255,255,0.06)", 
+  border:        "#2e2f31",
+  text:          "#e8e8f0",
+  muted:         "#6c727e",
   gradHero:      "linear-gradient(135deg, #E5383B 0%, #a21caf 100%)",
   gradSecondary: "linear-gradient(135deg, #6C63FF 0%, #a21caf 100%)",
 };
@@ -123,6 +124,7 @@ const STOCK = [
 // ─── Component ────────────────────────────────────────────────────────────────
 export default function DonatePage() {
   const [selectedGroup, setSelectedGroup] = useState("O-");
+  const navigate = useNavigate();
   const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
 
   return (
@@ -145,7 +147,7 @@ export default function DonatePage() {
                     padding: "10px 0", borderRadius: 12,
                     border: `2px solid ${selectedGroup === b ? C.primary : C.border}`,
                     background: selectedGroup === b ? C.gradHero : C.card,
-                    color: selectedGroup === b ? "#fff" : C.text,
+                    color: selectedGroup === b ? "#ffffff" : C.text,
                     fontWeight: 800, fontSize: 16, cursor: "pointer",
                     boxShadow: selectedGroup === b ? "0 4px 14px rgba(229,56,59,.3)" : "none",
                     transition: "all .15s",
@@ -186,7 +188,7 @@ export default function DonatePage() {
             <div style={{ fontSize: 11, fontWeight: 700, color: C.primary, letterSpacing: 0.5 }}>
               CRITICAL REQUEST · 8 MIN AGO
             </div>
-            <div style={{ fontSize: 17, fontWeight: 800, marginTop: 2 }}>
+            <div style={{ fontSize: 17, fontWeight: 800, marginTop: 2 ,color:"#0a0a0f"}}>
               O- needed for surgery — Apollo Hospital, 1.1 km
             </div>
             <div style={{ fontSize: 12, color: C.muted, marginTop: 2 }}>
@@ -278,7 +280,7 @@ export default function DonatePage() {
               <p style={{ fontSize: 12, color: C.muted, lineHeight: 1.6, margin: 0 }}>
                 It takes 8 minutes. You'll be notified only when there's an urgent need near you.
               </p>
-              <button style={{ ...S.btnPrimary(), width: "100%", justifyContent: "center", marginTop: 14 }}>
+              <button style={{ ...S.btnPrimary(), width: "100%", justifyContent: "center", marginTop: 14 }} onClick={() => navigate("/becomeDonor")}>
                 Register as donor
               </button>
             </div>

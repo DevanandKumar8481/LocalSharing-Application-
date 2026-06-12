@@ -6,12 +6,12 @@ const links = [
   { to: "/", label: "Home" },
   { to: "/dashboard", label: "Dashboard" },
   { to: "/map", label: "Live Map" },
-  { to: "/donate", label: "Donor" },
+  { to: "/donate", label: "Blood Donor" },
   { to: "/request", label: "Request Help" },
   { to: "/alerts", label: "Alerts" },
   { to: "/analytics", label: "Analytics" },
   { to: "/adminpage", label: "Admin" },
-  { to: "/trackpage", label: "Track Request" }
+  { to: "/trackpage", label: "Track Request" },
 ];
 
 

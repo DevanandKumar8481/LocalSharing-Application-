@@ -1,9 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-
-
-
 const resources = [
   { emoji: "🩸", label: "Blood Donors", color: "#e53e3e", bg: "#fff5f5" },
   { emoji: "🚚", label: "Transport", color: "#3182ce", bg: "#ebf8ff" },
@@ -40,7 +37,7 @@ const liveStats = [
 //#0a0a0f
 
 const Landing = () => {
-  const [navOpen, setNavOpen] = useState(false);
+  // const [navOpen, setNavOpen] = useState(false);
   const navigate = useNavigate();
   return (
     <div style={{ fontFamily: "system-ui, -apple-system, sans-serif", background: "#0a0a0f", color: "#e8e8f0", minHeight: "100vh", overflowX: "hidden" }}>
@@ -150,7 +147,7 @@ const Landing = () => {
 
             <div style={{ display: "flex", flexWrap: "wrap", gap: 12, marginBottom: 32 }}>
               <button className="btn-primary" style={{ fontSize: 15 }} onClick={() => navigate("/request")}>❤️ Request Help</button>
-              <button className="btn-outline" style={{ fontSize: 15 }} onClick={() => navigate("/donate")} >Become a Donor</button>
+              <button className="btn-outline" style={{ fontSize: 15 }} onClick={() => navigate("/becomeDonor")} >Become a Donor</button>
               <button className="btn-outline" style={{ fontSize: 15, borderColor: "transparent" }} onClick={() => navigate("/map")} >Explore Resources →</button>
             </div>
 
@@ -221,10 +218,10 @@ const Landing = () => {
         </div>
         <div className="resources-grid" style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: 16 }} >
           {resources.map(r => (
-            <div key={r.label} className="resource-card glass" style={{ borderRadius: 20, padding: 24, cursor: "pointer" }} onClick={() => navigate(r.path)} >
+            <div key={r.label} className="resource-card glass" style={{ borderRadius: 20, padding: 24, cursor: "pointer" }}  >
               <div style={{ width: 48, height: 48, borderRadius: 14, background: r.bg, display: "grid", placeItems: "center", fontSize: 22, marginBottom: 16 }}>{r.emoji}</div>
               <div style={{ fontSize: 14, fontWeight: 600 }}>{r.label}</div>
-              <div style={{ fontSize: 12, color: "rgba(232,232,240,0.4)", marginTop: 4 }}>View live availability →</div>
+              <div style={{ fontSize: 12, color: "rgba(232,232,240,0.4)", marginTop: 4 }} onClick={()=>useNavigate(r.path)}>View live availability →</div>
             </div>
           ))}
         </div>

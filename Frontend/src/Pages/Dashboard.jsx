@@ -19,7 +19,7 @@ const COLOR = {
   bg: "#0a0a0f",
   card: "rgba(255,255,255,.05)",
   border: "rgba(255,255,255,.18)",
-  text: "#e8e8f0", 
+  text: "#e8e8f0",
   muted: "#6b7280",
   gradHero: "linear-gradient(135deg, #E5383B 0%, #a21caf 100%)",
   gradCard: "linear-gradient(135deg, #6C63FF 0%, #E5383B 100%)",
@@ -126,6 +126,26 @@ function Badge({ color, label }) {
 
 // SOS pulse animation (keyframes injected once)
 const CSS = `
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { margin: 0; padding: 0; background: #0a0a0f; }
+body { 
+  margin: 0; 
+  padding: 0; 
+  background: #0a0a0f; 
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  color: #e8e8f0;
+  overflow-x: hidden;
+}
+#root { width: 100%; }
+ 
+@keyframes pulse-ring {
+  0%   { transform: scale(1);   opacity: .6; }
+  100% { transform: scale(1.55); opacity: 0; }
+}
+  
+
+
 @keyframes pulse-ring {
   0%   { transform: scale(1);   opacity: .6; }
   100% { transform: scale(1.55); opacity: 0; }

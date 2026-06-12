@@ -6,25 +6,25 @@ import {
 
 // Tokens 
 const C = {
-  primary:   "#E5383B",
+  primary: "#E5383B",
   secondary: "#6C63FF",
-  success:   "#22c55e",
-  warning:   "#f59e0b",
-  bg:        "#f8f9fc",
-  card:      "#ffffff",
-  border:    "#e8eaed",
-  text:      "#111827",
-  muted:     "#6b7280",
-  gradHero:  "linear-gradient(135deg,#E5383B 0%,#a21caf 100%)",
+  success: "#22c55e",
+  warning: "#f59e0b",
+  bg: "#0a0a0f", //f8f9fc
+  card: "rgba(27, 25, 25, 0.18)", //ffffff
+  border: "#2a2c2f", //e8eaed
+  text: "#e8e8f0", //111827
+  muted: "#727885", //6b7280
+  gradHero: "linear-gradient(135deg,#E5383B 0%,#a21caf 100%)",
 };
 
 const TYPE_COLOR = {
-  blood:     C.primary,
-  medical:   C.primary,
+  blood: C.primary,
+  medical: C.primary,
   transport: C.secondary,
-  medicine:  C.success,
-  food:      C.warning,
-  shelter:   C.secondary,
+  medicine: C.success,
+  food: C.warning,
+  shelter: C.secondary,
 };
 
 // ─── CSS (pulse animation) ────────────────────────────────────────────────────
@@ -44,24 +44,24 @@ if (typeof document !== "undefined" && !document.getElementById("map-styles")) {
 
 //  Data
 const FILTERS = [
-  { id: "all",       label: "All",       icon: Layers,    color: C.text      },
-  { id: "blood",     label: "Blood",     icon: Droplet,   color: C.primary   },
-  { id: "medical",   label: "Medical",   icon: HeartPulse,color: C.primary   },
-  { id: "transport", label: "Transport", icon: Truck,     color: C.secondary },
-  { id: "medicine",  label: "Medicine",  icon: Pill,      color: C.success   },
-  { id: "food",      label: "Food",      icon: Utensils,  color: C.warning   },
-  { id: "shelter",   label: "Shelter",   icon: Home,      color: C.secondary },
+  { id: "all", label: "All", icon: Layers, color: C.text },
+  { id: "blood", label: "Blood", icon: Droplet, color: C.primary },
+  { id: "medical", label: "Medical", icon: HeartPulse, color: C.primary },
+  { id: "transport", label: "Transport", icon: Truck, color: C.secondary },
+  { id: "medicine", label: "Medicine", icon: Pill, color: C.success },
+  { id: "food", label: "Food", icon: Utensils, color: C.warning },
+  { id: "shelter", label: "Shelter", icon: Home, color: C.secondary },
 ];
 
 const PINS = [
-  { x: 22, y: 30, type: "blood",     urg: true,  label: "O- needed",        dist: 1.2 },
-  { x: 65, y: 22, type: "shelter",   urg: false, label: "38 beds",           dist: 2.4 },
-  { x: 48, y: 55, type: "medical",   urg: true,  label: "Trauma case",       dist: 0.8 },
-  { x: 78, y: 60, type: "transport", urg: false, label: "Ambulance free",    dist: 3.1 },
-  { x: 35, y: 70, type: "food",      urg: false, label: "200 meals/day",     dist: 1.7 },
-  { x: 58, y: 78, type: "medicine",  urg: false, label: "Insulin available", dist: 2.9 },
-  { x: 14, y: 60, type: "blood",     urg: false, label: "Donor online",      dist: 3.6 },
-  { x: 88, y: 40, type: "shelter",   urg: false, label: "Community hall",    dist: 4.2 },
+  { x: 22, y: 30, type: "blood", urg: true, label: "O- needed", dist: 1.2 },
+  { x: 65, y: 22, type: "shelter", urg: false, label: "38 beds", dist: 2.4 },
+  { x: 48, y: 55, type: "medical", urg: true, label: "Trauma case", dist: 0.8 },
+  { x: 78, y: 60, type: "transport", urg: false, label: "Ambulance free", dist: 3.1 },
+  { x: 35, y: 70, type: "food", urg: false, label: "200 meals/day", dist: 1.7 },
+  { x: 58, y: 78, type: "medicine", urg: false, label: "Insulin available", dist: 2.9 },
+  { x: 14, y: 60, type: "blood", urg: false, label: "Donor online", dist: 3.6 },
+  { x: 88, y: 40, type: "shelter", urg: false, label: "Community hall", dist: 4.2 },
 ];
 
 // Component 
@@ -96,7 +96,7 @@ export default function MapPage() {
                 linear-gradient(to right, ${C.border} 1px, transparent 1px),
                 linear-gradient(to bottom, ${C.border} 1px, transparent 1px)`,
               backgroundSize: "40px 40px",
-              opacity: 0.6,
+              opacity: 0.7,
             }} />
 
             {/* Heatmap blobs */}
@@ -207,7 +207,7 @@ export default function MapPage() {
                   style={{
                     width: "100%", height: 44, padding: "0 12px 0 34px",
                     borderRadius: 12, border: `1.5px solid ${C.border}`,
-                    background: "rgba(255,255,255,.92)",
+                    background: "#0a0a0f",
                     backdropFilter: "blur(10px)",
                     fontSize: 14, color: C.text,
                     outline: "none", boxSizing: "border-box",
@@ -216,7 +216,7 @@ export default function MapPage() {
               </div>
               <button style={{
                 width: 44, height: 44, borderRadius: 12,
-                background: "rgba(255,255,255,.92)",
+                background: "#0a0a0f",
                 backdropFilter: "blur(10px)",
                 border: `1.5px solid ${C.border}`,
                 cursor: "pointer", display: "grid", placeItems: "center",
@@ -232,7 +232,7 @@ export default function MapPage() {
             }}>
               <button style={{
                 width: 44, height: 44, borderRadius: 12,
-                background: "rgba(255,255,255,.92)", backdropFilter: "blur(10px)",
+                background: "rgba(23, 19, 27, 0.92)", backdropFilter: "blur(10px)",
                 border: `1.5px solid ${C.border}`, cursor: "pointer",
                 display: "grid", placeItems: "center",
               }}>
@@ -265,14 +265,14 @@ export default function MapPage() {
                       display: "inline-flex", alignItems: "center", gap: 5,
                       padding: "7px 12px", borderRadius: 99,
                       border: "none", cursor: "pointer", fontSize: 12, fontWeight: 600,
-                      background: isActive ? C.text : "rgba(255,255,255,.92)",
-                      color: isActive ? "#fff" : C.text,
+                      background: isActive ? C.text : "rgba(28, 26, 26, 0.92)",
+                      color: isActive ? "#0d0b0b" : C.text,
                       backdropFilter: "blur(10px)",
                       boxShadow: isActive ? "0 2px 8px rgba(0,0,0,.2)" : "0 1px 4px rgba(0,0,0,.08)",
                       transition: "all .15s",
                     }}
                   >
-                    <f.icon size={13} color={isActive ? "#fff" : f.color} />
+                    <f.icon size={13} color={isActive ? "#1a1818" : f.color} />
                     {f.label}
                   </button>
                 );
