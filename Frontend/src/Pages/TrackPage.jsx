@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 // tiny design tokens 
 const CSS = `
@@ -498,6 +499,7 @@ function RequestItem({ req, isOpen, onToggle }) {
 
 //  main component 
 export default function TrackPage() {
+  const navigate = useNavigate();
   const [expandedId, setExpandedId] = useState("REQ-2847");
   const [tab, setTab] = useState("all");
 
@@ -529,7 +531,7 @@ export default function TrackPage() {
             <div className="shell-title">Track My Requests</div>
             <div className="shell-sub">Real-time status of all your emergency requests and deliveries</div>
           </div>
-          <button className="btn btn-primary" style={{ flex: "none", width: "auto" }}>
+          <button className="btn btn-primary" style={{ flex: "none", width: "auto" }} onClick={()=>(navigate("/request"))}>
             <icons.Plus /> New Request
           </button>
         </div>

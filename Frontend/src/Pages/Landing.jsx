@@ -221,7 +221,7 @@ const Landing = () => {
             <div key={r.label} className="resource-card glass" style={{ borderRadius: 20, padding: 24, cursor: "pointer" }}  >
               <div style={{ width: 48, height: 48, borderRadius: 14, background: r.bg, display: "grid", placeItems: "center", fontSize: 22, marginBottom: 16 }}>{r.emoji}</div>
               <div style={{ fontSize: 14, fontWeight: 600 }}>{r.label}</div>
-              <div style={{ fontSize: 12, color: "rgba(232,232,240,0.4)", marginTop: 4 }} onClick={()=>useNavigate(r.path)}>View live availability →</div>
+              <div style={{ fontSize: 12, color: "rgba(232,232,240,0.4)", marginTop: 4 }} onClick={()=>(navigate(r.path))}>View live availability →</div>
             </div>
           ))}
         </div>
@@ -314,7 +314,7 @@ const Landing = () => {
                 Create free account
               </button>
               <button style={{ background: "transparent", color: "#fff", border: "1.5px solid rgba(255,255,255,0.5)", padding: "12px 28px", borderRadius: 10, fontSize: 15, fontWeight: 600, cursor: "pointer", transition: "background 0.2s" }}
-                onClick={() => navigate("/volunteer")}>
+                onClick={() => navigate("/registerVolunteer")} >
                 Become a Volunteer
               </button>
             </div>
