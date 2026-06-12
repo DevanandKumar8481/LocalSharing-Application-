@@ -311,11 +311,7 @@ const Landing = () => {
             <p style={{ fontSize: 16, color: "rgba(255,255,255,0.8)", maxWidth: 480, margin: "0 auto 32px", lineHeight: 1.6 }}>Become a verified responder, list a resource, or simply share the app — every action matters.</p>
             <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: 12 }}>
               <button style={{ background: "#fff", color: "#c53030", border: "none", padding: "12px 28px", borderRadius: 10, fontSize: 15, fontWeight: 700, cursor: "pointer", transition: "opacity 0.2s" }} onClick={() => navigate("/signup")} >
-                Create free account
-              </button>
-              <button style={{ background: "transparent", color: "#fff", border: "1.5px solid rgba(255,255,255,0.5)", padding: "12px 28px", borderRadius: 10, fontSize: 15, fontWeight: 600, cursor: "pointer", transition: "background 0.2s" }}
-                onClick={() => navigate("/registerVolunteer")} >
-                Become a Volunteer
+                Create account
               </button>
             </div>
           </div>
