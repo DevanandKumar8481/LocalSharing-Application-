@@ -1,54 +1,43 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
+import { useUser } from "./usercontext";
 
-const links = [
-  { to: "/", label: "Home" },
+
+const ALL_LINKS = [
+  { to: "/",          label: "Home" },
   { to: "/dashboard", label: "Dashboard" },
-  { to: "/map", label: "Live Map" },
-  { to: "/donate", label: "Blood Donor" },
-  { to: "/request", label: "Request Help" },
-  { to: "/alerts", label: "Alerts" },
+  { to: "/map",       label: "Live Map" },
+  { to: "/donate",    label: "Blood Dononation" },
+  { to: "/request",   label: "Request Help" },
+  { to: "/alerts",    label: "Alerts" },
   { to: "/analytics", label: "Analytics" },
-  { to: "/adminpage", label: "Admin" },
+  { to: "/adminpage", label: "Admin Panel",         adminOnly: true },
   { to: "/trackpage", label: "Track Request" },
 ];
 
+// Roles that should NOT see Admin
+const NON_ADMIN_ROLES = ["requester", "volunteer", "provider"];
 
 if (typeof document !== "undefined" && !document.getElementById("navbar-resp-styles")) {
   const s = document.createElement("style");
   s.id = "navbar-resp-styles";
   s.textContent = `
-    /* Hide Navbar links on mobile */
     @media (max-width: 768px) {
       .nb-desktop-links { display: none !important; }
       .nb-desktop-cta   { display: none !important; }
       .nb-hamburger     { display: flex  !important; }
     }
-    /* Hide hamburger on desktop */
     @media (min-width: 769px) {
       .nb-hamburger { display: none !important; }
     }
-
-    /* Drawer slide-in animation */
-    @keyframes drawerIn {
-      from { transform: translateX(-100%); opacity: 0; }
-      to   { transform: translateX(0);     opacity: 1; }
-    }
-    @keyframes drawerOut {
-      from { transform: translateX(0);     opacity: 1; }
-      to   { transform: translateX(-100%); opacity: 0; }
-    }
-    .nb-drawer        { animation: drawerIn  .25s ease forwards; }
-    .nb-drawer.closing{ animation: drawerOut .22s ease forwards; }
-
-    /* Overlay fade */
-    @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
-    .nb-overlay { animation: fadeIn .2s ease forwards; }
-
-    /* Mobile link hover */
-    .nb-mob-link:hover { background: rgba(245,101,101,0.06) !important; color: #e8e8f0 !important; }
-    /* Desktop link hover */
+    @keyframes drawerIn  { from { transform: translateX(-100%); opacity: 0; } to { transform: translateX(0);     opacity: 1; } }
+    @keyframes drawerOut { from { transform: translateX(0);     opacity: 1; } to { transform: translateX(-100%); opacity: 0; } }
+    .nb-drawer         { animation: drawerIn  .25s ease forwards; }
+    .nb-drawer.closing { animation: drawerOut .22s ease forwards; }
+    @keyframes fadeIn  { from { opacity: 0; } to { opacity: 1; } }
+    .nb-overlay   { animation: fadeIn .2s ease forwards; }
+    .nb-mob-link:hover  { background: rgba(245,101,101,0.06) !important; color: #e8e8f0 !important; }
     .nb-desk-link:hover { color: #e8e8f0 !important; }
   `;
   document.head.appendChild(s);
@@ -56,8 +45,34 @@ if (typeof document !== "undefined" && !document.getElementById("navbar-resp-sty
 
 export default function Navbar() {
   const { pathname } = useLocation();
-  const [open, setOpen] = useState(false);
+  const { userData }  = useUser();
+  const [open,    setOpen]    = useState(false);
   const [closing, setClosing] = useState(false);
+
+  // Filter links: hide Admin for non-admin roles
+  const visibleLinks = ALL_LINKS.filter(link => {
+    if (!link.adminOnly) return true;
+    // Show Admin only if no user yet (pre-login) OR user role is "ngo"
+    if (!userData) return true;
+    return !NON_ADMIN_ROLES.includes(userData.role);
+  });
+
+  // Derive initials for avatar
+  const initials = (() => {
+    if (!userData) return "?";
+    const name = userData.displayName || userData.name || userData.orgName || "";
+    return name
+      .split(" ")
+      .filter(Boolean)
+      .slice(0, 2)
+      .map(w => w[0].toUpperCase())
+      .join("") || "U";
+  })();
+
+  // Role label shown under avatar (optional tooltip / title attr)
+  const roleLabel = userData
+    ? { volunteer: "Volunteer", requester: "Requester", provider: "Resource Provider", ngo: "NGO / Authority" }[userData.role] ?? ""
+    : "";
 
   function closeDrawer() {
     setClosing(true);
@@ -82,7 +97,7 @@ export default function Navbar() {
 
         {/* Desktop links */}
         <div className="nb-desktop-links" style={{ display: "flex", gap: 22, fontSize: 14 }}>
-          {links.map(l => (
+          {visibleLinks.map(l => (
             <Link key={l.to} to={l.to} className="nb-desk-link" style={{
               textDecoration: "none",
               color: pathname === l.to ? "#e8e8f0" : "rgba(232,232,240,0.5)",
@@ -94,8 +109,8 @@ export default function Navbar() {
           ))}
         </div>
 
-        {/* Desktop CTA */}
-        <div style={{display:"flex",alignItems:"center",gap:"12px"}}>
+        {/* Right section */}
+        <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
           <Link to="/request" className="nb-desktop-cta" style={{
             background: "linear-gradient(135deg,#e53e3e,#c53030)",
             color: "#fff", padding: "8px 18px",
@@ -103,24 +118,29 @@ export default function Navbar() {
             textDecoration: "none",
           }}>Get Help Now</Link>
 
-          <Link to="/profile"
+          {/* Avatar — shows initials from signup data */}
+          <Link
+            to="/profile"
             onClick={closeDrawer}
+            title={roleLabel}
             style={{
               width: 40, height: 40, borderRadius: "50%",
               background: "linear-gradient(135deg,#f66565,#e53e3e)",
               display: "flex", alignItems: "center", justifyContent: "center",
-              textDecoration: "none", fontWeight:700,fontSize:"16px",
-            }}>
-            A
-
+              textDecoration: "none", fontWeight: 700, fontSize: "14px", color: "#fff",
+              flexShrink: 0,
+            }}
+          >
+            {initials}
           </Link>
         </div>
-        {/* Hamburger (mobile only) */}
+
+        {/* Hamburger */}
         <button
           className="nb-hamburger"
           onClick={() => setOpen(true)}
           style={{
-            display: "none", // overridden by media query
+            display: "none",
             alignItems: "center", justifyContent: "center",
             width: 38, height: 38, borderRadius: 9,
             border: "1.5px solid rgba(255,255,255,0.15)",
@@ -134,20 +154,14 @@ export default function Navbar() {
       {/* Spacer */}
       <div style={{ height: 60 }} />
 
-      {/* ── Mobile Drawer ── */}
+      {/* Mobile Drawer */}
       {open && (
         <>
-          {/* Backdrop */}
           <div
             className="nb-overlay"
             onClick={closeDrawer}
-            style={{
-              position: "fixed", inset: 0, zIndex: 200,
-              background: "rgba(0,0,0,0.45)",
-            }}
+            style={{ position: "fixed", inset: 0, zIndex: 200, background: "rgba(0,0,0,0.45)" }}
           />
-
-          {/* Drawer panel  */}
           <div
             className={`nb-drawer${closing ? " closing" : ""}`}
             style={{
@@ -168,26 +182,31 @@ export default function Navbar() {
               borderBottom: "1px solid #f0f0f4",
             }}>
               <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                {/* Pink circle logo */}
                 <div style={{
                   width: 40, height: 40, borderRadius: "50%",
                   background: "linear-gradient(135deg,#f56565,#e53e3e)",
-                }} />
-                <span style={{ fontWeight: 800, fontSize: 18, color: "#111" }}>
-                  ResQ<span style={{ color: "#f56565" }}>Link</span>
-                </span>
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  fontWeight: 700, fontSize: 14, color: "#fff",
+                }}>
+                  {initials}
+                </div>
+                <div>
+                  <span style={{ fontWeight: 800, fontSize: 16, color: "#111" }}>
+                    ResQ<span style={{ color: "#f56565" }}>Link</span>
+                  </span>
+                  {roleLabel && (
+                    <div style={{ fontSize: 11, color: "#9ca3af", marginTop: 1 }}>{roleLabel}</div>
+                  )}
+                </div>
               </div>
-              <button
-                onClick={closeDrawer}
-                style={{ background: "none", border: "none", cursor: "pointer", padding: 4 }}
-              >
+              <button onClick={closeDrawer} style={{ background: "none", border: "none", cursor: "pointer", padding: 4 }}>
                 <X size={22} color="#6b7280" />
               </button>
             </div>
 
             {/* Nav links */}
             <nav style={{ flex: 1, padding: "12px 8px", overflowY: "auto" }}>
-              {links.map(l => (
+              {visibleLinks.map(l => (
                 <Link
                   key={l.to}
                   to={l.to}
@@ -211,31 +230,20 @@ export default function Navbar() {
               ))}
             </nav>
 
-            {/* Bottom CTA buttons — matches screenshot */}
+            {/* Bottom CTAs */}
             <div style={{ padding: "16px 16px 28px", borderTop: "1px solid #f0f0f4", display: "flex", gap: 10 }}>
-              <Link
-                to="/login"
-                onClick={closeDrawer}
-                style={{
-                  flex: 1, padding: "12px 0", borderRadius: 12,
-                  border: "1.5px solid #e8eaed", background: "#fff",
-                  color: "#111", fontWeight: 600, fontSize: 14,
-                  textDecoration: "none", textAlign: "center",
-                  display: "block",
-                }}
-              >Sign in</Link>
-              <Link
-                to="/request"
-                onClick={closeDrawer}
-                style={{
-                  flex: 1, padding: "12px 0", borderRadius: 12,
-                  background: "linear-gradient(135deg,#e53e3e,#c53030)",
-                  color: "#fff", fontWeight: 700, fontSize: 14,
-                  textDecoration: "none", textAlign: "center",
-                  display: "block",
-                }}
-              >Get Help</Link>
-
+              <Link to="/login" onClick={closeDrawer} style={{
+                flex: 1, padding: "12px 0", borderRadius: 12,
+                border: "1.5px solid #e8eaed", background: "#fff",
+                color: "#111", fontWeight: 600, fontSize: 14,
+                textDecoration: "none", textAlign: "center", display: "block",
+              }}>Sign in</Link>
+              <Link to="/request" onClick={closeDrawer} style={{
+                flex: 1, padding: "12px 0", borderRadius: 12,
+                background: "linear-gradient(135deg,#e53e3e,#c53030)",
+                color: "#fff", fontWeight: 700, fontSize: 14,
+                textDecoration: "none", textAlign: "center", display: "block",
+              }}>Get Help</Link>
             </div>
           </div>
         </>

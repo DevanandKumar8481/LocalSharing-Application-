@@ -11,7 +11,7 @@ import MapPage from "./Pages/MapPage";
 import RequestPage from "./Pages/RequestPage";
 import AlertsPage from "./Pages/AlertsPage";
 import AnalyticsPage from "./Pages/AnalyticsPage";
-import Navbar from "./Components/Navbar"
+import Navbar from "./Components/Navbar";
 import Food from "./Pages/Food";
 import Medicine from "./Pages/Medicine";
 import Shelter from "./Pages/Shelter";
@@ -20,14 +20,13 @@ import TrackPage from "./Pages/TrackPage";
 import ProfilePage from "./Pages/ProfilePage";
 import BecomeDonor from "./Pages/BecomeDonor";
 import VolunteerRegister from "./Pages/VolunteerRegister";
-
-
+import { UserProvider } from "./Components/usercontext";
 
 function App() {
-
   return (
-    <>
+    <UserProvider>
       <Navbar />
+
       <Routes>
         <Route path="/" element={<Landing />} />
 
@@ -46,16 +45,16 @@ function App() {
         <Route path="/adminpage" element={<AdminPage />} />
         <Route path="/volunteer" element={<Volunteers />} />
 
-        <Route path="/medicine" element={<Medicine/>} />
-        <Route path="/food" element={<Food/>} /> 
-        <Route path="/shelter" element={<Shelter/>} />
-        <Route path="/transport" element={<Transport/>}/>
-        <Route path="/trackpage" element={<TrackPage/>} />
+        <Route path="/medicine" element={<Medicine />} />
+        <Route path="/food" element={<Food />} />
+        <Route path="/shelter" element={<Shelter />} />
+        <Route path="/transport" element={<Transport />} />
+        <Route path="/trackpage" element={<TrackPage />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/becomeDonor" element={<BecomeDonor />} />
         <Route path="/registerVolunteer" element={<VolunteerRegister />} />
       </Routes>
-    </>
+    </UserProvider>
   );
 }
 
