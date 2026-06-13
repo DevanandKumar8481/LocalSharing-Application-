@@ -142,14 +142,6 @@ export default function SignupPage() {
 
         {/* Navbar */}
         <header className="resq-header">
-          <Link to="/" style={{ textDecoration: "none" }}>
-            <div className="resq-logo-container">
-              <div className="resq-logo-box">R</div>
-              <span style={{ color: "#fff", fontWeight: 700, fontSize: "1.1rem" }}>
-                ResQ <span style={{ color: "#ef4444" }}>Link</span>
-              </span>
-            </div>
-          </Link>
           <Link to="/login" className="resq-header-link">
             Already a member? <span>Sign in</span>
           </Link>

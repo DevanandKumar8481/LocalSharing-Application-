@@ -7,20 +7,19 @@ import {
 
 // ─── Tokens ───────────────────────────────────────────────────────────────────
 const C = {
-  primary:   "#E5383B",
-  secondary: "#6C63FF",
+  primary:   "#ff4d4f",
+  secondary: "#8b5cf6",
   success:   "#22c55e",
   warning:   "#f59e0b",
-  bg:        "#f8f9fc",
-  card:      "#ffffff",
-  border:    "#e8eaed",
-  text:      "#111827",
-  muted:     "#6b7280",
-  accent:    "#f59e0b",        // warning = food accent
-  accentBg:  "#fef3c7",
+  bg:        "#000000",
+  card:      "#111111",
+  border:    "#2a2a2a",
+  text:      "#ffffff",
+  muted:     "#b3b3b3",
+  accent:    "#f59e0b",
+  accentBg:  "#1a1a1a",
   gradHero:  "linear-gradient(135deg,#f59e0b 0%,#ef4444 100%)",
 };
-
 // ─── CSS ──────────────────────────────────────────────────────────────────────
 if (typeof document !== "undefined" && !document.getElementById("food-styles")) {
   const s = document.createElement("style");
@@ -169,29 +168,6 @@ export default function Food() {
   return (
     <div style={{ minHeight:"100vh", background:C.bg, fontFamily:"'Inter','Segoe UI',sans-serif", color:C.text }}>
 
-      {/* ── Header ── */}
-      <header style={{
-        background:C.card, borderBottom:`1px solid ${C.border}`,
-        padding:"0 24px", height:64,
-        display:"flex", alignItems:"center", justifyContent:"space-between",
-        position:"sticky", top:0, zIndex:10,
-        boxShadow:"0 1px 8px rgba(0,0,0,.04)",
-      }}>
-        <div style={{
-          fontWeight:800, fontSize:20,
-          background: C.gradHero,
-          WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text",
-          letterSpacing:"-0.5px",
-        }}>ResQ Link</div>
-        <div style={{
-          display:"inline-flex", alignItems:"center", gap:6,
-          fontSize:12, fontWeight:600, color:C.success,
-          background:"#dcfce7", padding:"5px 12px", borderRadius:99,
-        }}>
-          <span style={{ width:7, height:7, borderRadius:"50%", background:C.success, display:"inline-block", animation:"pulse-ring 1.6s ease-out infinite" }} />
-          21 kitchens live
-        </div>
-      </header>
 
       <main style={{ maxWidth:1200, margin:"0 auto", padding:"28px 20px 56px" }}>
 

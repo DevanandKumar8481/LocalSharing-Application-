@@ -9,7 +9,6 @@ const ALL_LINKS = [
   { to: "/dashboard", label: "Dashboard" },
   { to: "/map",       label: "Live Map" },
   { to: "/donate",    label: "Blood Dononation" },
-  { to: "/request",   label: "Request Help" },
   { to: "/alerts",    label: "Alerts" },
   { to: "/analytics", label: "Analytics" },
   { to: "/adminpage", label: "Admin Panel",         adminOnly: true },
